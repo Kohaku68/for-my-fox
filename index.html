@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For My Little Fox ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: "Courier New", monospace;
+            background:
+                linear-gradient(rgba(75, 42, 105, 0.65), rgba(35, 18, 55, 0.85)),
+                linear-gradient(135deg, #c084fc, #7e57c2, #4a2868);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        /* =========================
+           CORAÇÕES DE FUNDO
+        ========================= */
+
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: floatUp linear infinite;
+            text-shadow: 0 0 10px #e9b7ff;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           MENU PRINCIPAL
+        ========================= */
+
+        .menu {
+            width: min(90%, 700px);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: clamp(35px, 8vw, 70px);
+            color: #fff;
+            text-shadow:
+                4px 4px #5b347d,
+                0 0 20px #e4b3ff;
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #f1d9ff;
+            margin-bottom: 40px;
+        }
+
+        .pixel-button {
+            width: min(100%, 500px);
+            margin: 14px auto;
+            display: block;
+
+            padding: 18px;
+
+            background: #9b6dcc;
+            border: 4px solid #d8b4fe;
+            border-right-color: #4d2d69;
+            border-bottom-color: #4d2d69;
+
+            color: white;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 18px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 0 3px #351d4b,
+                0 8px 0 #351d4b;
+
+            transition: 0.12s;
+        }
+
+        .pixel-button:hover {
+            background: #b084e3;
+            transform: translateY(-2px);
+        }
+
+        .pixel-button:active {
+            transform: translateY(6px);
+            box-shadow:
+                0 0 0 3px #351d4b,
+                0 2px 0 #351d4b;
+        }
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        .letter-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(28, 12, 42, 0.88);
+            backdrop-filter: blur(5px);
+
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .letter {
+            width: min(700px, 95%);
+            max-height: 90vh;
+            overflow-y: auto;
+
+            background:
+                linear-gradient(145deg, #fff7ff, #f0d9fa);
+
+            color: #4c285f;
+
+            padding: clamp(25px, 6vw, 55px);
+
+            border: 6px solid #8e5cad;
+            box-shadow:
+                10px 10px 0 #351d4b,
+                0 0 35px rgba(221, 170, 255, 0.6);
+
+            position: relative;
+        }
+
+        .letter h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: #713e91;
+        }
+
+        .letter p {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            color: #713e91;
+        }
+
+        .close {
+            margin-top: 30px;
+            width: 100%;
+            padding: 14px;
+
+            border: 3px solid #713e91;
+            background: #c59bdd;
+            color: white;
+
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* =========================
+           PEQUENO EASTER EGG
+        ========================= */
+
+        .fox {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            font-size: 35px;
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #e9d2f5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CORAÇÕES -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- MENU -->
+    <main class="menu">
+
+        <h1 class="title">♥ VANN ♥</h1>
+
+        <div class="subtitle">
+            A little place made for my Little Fox 🦊
+        </div>
+
+        <button class="pixel-button" onclick="openLetter()">
+            💌 OPEN MY LETTER
+        </button>
+
+        <button class="pixel-button" onclick="loveMessage()">
+            💜 PRESS FOR A SURPRISE
+        </button>
+
+        <div class="footer">
+            Crafted with love by a lovestruck slime.
+        </div>
+
+    </main>
+
+    <!-- RAPOSINHA -->
+    <div class="fox">🦊</div>
+
+    <!-- CARTA -->
+    <section class="letter-screen" id="letterScreen">
+
+        <div class="letter">
+
+            <h2>💜 To My Little Fox 💜</h2>
+
+            <p>
+                I will protect your heart with my loyalty—safeguarding
+                your feelings and staying by your side, always respecting
+                your emotions.
+            </p>
+
+            <br>
+
+            <p>
+                In exchange for your trust, I offer my honesty; I will
+                never break that trust with lies or omissions, remaining
+                someone you can rely on and lean on.
+            </p>
+
+            <br>
+
+            <p>
+                And for your dreams, I offer my hope, to always encourage
+                and support you.❤️❤️
+            </p>
+
+            <div class="signature">
+                From: a lovestruck slime.
+            </div>
+
+            <button class="close" onclick="closeLetter()">
+                ♥ CLOSE LETTER ♥
+            </button>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        /* =========================
+           CORAÇÕES ALEATÓRIOS
+        ========================= */
+
+        const heartsContainer = document.getElementById("hearts");
+
+        const hearts = ["♥", "♡", "💜", "💗", "💖"];
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + "px";
+
+            heart.style.animationDuration =
+                (6 + Math.random() * 8) + "s";
+
+            heart.style.animationDelay =
+                Math.random() * 2 + "s";
+
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 15000);
+        }
+
+        setInterval(createHeart, 500);
+
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        function openLetter() {
+            document.getElementById("letterScreen").style.display = "flex";
+        }
+
+        function closeLetter() {
+            document.getElementById("letterScreen").style.display = "none";
+        }
+
+
+        /* =========================
+           SURPRESA
+        ========================= */
+
+        function loveMessage() {
+
+            alert(
+                "🦊 Little Fox detected!\n\n" +
+                "You have officially been loved by a very lovestruck slime. 💜"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
